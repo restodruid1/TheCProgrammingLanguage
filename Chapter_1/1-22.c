@@ -4,7 +4,7 @@
 
 int get_line(char line[], int maxline);
 void split_input(char line[], int len);
-int nthColumn = 10;
+int nthColumn = 25;
 
 int main(void)
 {
@@ -30,20 +30,22 @@ void split_input(char line[], int len) {
     int j;
     char tmp;
 
+    // Iterate over input string
     while (i < len) {
-        if ((i != 0) && (i % nthColumn == 0)) {
-            if (line[i] != ' ' || line[i] != '\t') {
-                if (line[i+1] != ' ' || line[i+1] != '\t') {
-                    printf("%c-\n", line[i]);
+        if ((i != 0) && (i % nthColumn == 0)) {     // Every 10th element
+            if (line[i] != ' ' && line[i] != '\t') {    // is a char
+                if (line[i+1] != ' ' && line[i+1] != '\t') {    // is a char
+                    printf("%c-\n", line[i]);   // hyphenate the word to carry onto next line
                     
                 }
                 else {
-                    printf("%c", line[i]);
+                    printf("%c\n", line[i]);    // No need to hyphenate, just print word
+                    i++;
                 }
             }
             else {
                 j = i;
-                while (line[i] == ' ' || line[i] == '\t') {
+                while (line[i] == ' ' || line[i] == '\t') {     // filter out blank spaces before end of line
                     i--;
                 }
                 i = j;
